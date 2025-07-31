@@ -148,10 +148,14 @@ public class MapEditor extends JFrame {
         eraserButton.addActionListener(e -> currentTile = "t0");
         controls.add(eraserButton);
 
+        JButton importTilesheetBtn = new JButton("Import Tilesheet");
+        importTilesheetBtn.addActionListener(e -> importTilesheets());
+        controls.add(importTilesheetBtn);
+
         add(controls, BorderLayout.SOUTH);
 
-        setTitle("Tile Map Editor - Multi Layer");
-        setSize(1220, 700);
+        setTitle("Tile Map Editor");
+        setSize(1370, 800);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -452,6 +456,48 @@ public class MapEditor extends JFrame {
         g2d.dispose();
         return transparent;
     }
+    private void importTilesheets() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Select Tilesheet(s) to Import");
+        fileChooser.setMultiSelectionEnabled(true);
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Image Files", "png", "jpg", "jpeg"));
+
+        int result = fileChooser.showOpenDialog(this);
+        if (result != JFileChooser.APPROVE_OPTION) return;
+
+        File[] selectedFiles = fileChooser.getSelectedFiles();
+
+        ArrayList<Tile> tileList = new ArrayList<>(Arrays.asList(tileSet));
+        int index = symbolList.size();
+
+        for (File file : selectedFiles) {
+            try {
+                spritesheetNames.add(file.getName());
+                spritesheetStartIndexes.add(tileList.size());
+
+                BufferedImage sheet = ImageIO.read(file);
+                int sheetCols = sheet.getWidth() / tileSize;
+                int sheetRows = sheet.getHeight() / tileSize;
+
+                for (int y = 0; y < sheetRows; y++) {
+                    for (int x = 0; x < sheetCols; x++) {
+                        BufferedImage sub = sheet.getSubimage(x * tileSize, y * tileSize, tileSize, tileSize);
+                        tileList.add(new Tile(sub));
+                        symbolList.add("t" + index++);
+                    }
+                }
+
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Failed to import: " + file.getName());
+            }
+        }
+
+        tileSet = tileList.toArray(new Tile[0]);
+        populateTileButtons();
+    }
+
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(MapEditor::new);
