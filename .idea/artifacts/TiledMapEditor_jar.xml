@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TiledMapEditor:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/TiledMapEditor_jar</output-path>
+    <root id="archive" name="TiledMapEditor.jar">
+      <element id="module-output" name="TiledMapEditor" />
+    </root>
+  </artifact>
+</component>

@@ -1,37 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="TiledMapEditor:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e30c1c3-3677-4bd4-881a-36f9b6435a36" name="Changes" comment="initial commit">
-      <change afterPath="$PROJECT_DIR$/out/production/TiledMapEditor/tiles/Dungeon_Props.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/TiledMapEditor/tiles/Farm.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/TiledMapEditor/tiles/Floors.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/TiledMapEditor/tiles/Furniture.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/TiledMapEditor/tiles/Props.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/TiledMapEditor/tiles/Resources.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/TiledMapEditor/tiles/Rocks.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/TiledMapEditor/tiles/Roofs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/TiledMapEditor/tiles/Vegetation.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/TiledMapEditor/tiles/Walls.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/TiledMapEditor/tiles/Water_tiles.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tiles/Dungeon_Props.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tiles/Farm.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tiles/Floors.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tiles/Furniture.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tiles/Props.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tiles/Resources.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tiles/Rocks.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tiles/Roofs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tiles/Vegetation.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tiles/Walls.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tiles/Water_tiles.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TiledMapEditor/main/MapEditor$EditorPanel$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TiledMapEditor/main/MapEditor$EditorPanel$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TiledMapEditor/main/MapEditor$EditorPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TiledMapEditor/main/MapEditor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TiledMapEditor/main/MapEditor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TiledMapEditor/main/MapEditor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/MapEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/MapEditor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -68,7 +48,11 @@
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/rylan/IdeaProjects/TiledMapEditor&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
 }</component>
   <component name="RunManager">
@@ -104,7 +88,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753930947174</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="initial commit">
+      <option name="closed" value="true" />
+      <created>1753932031622</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1753932031622</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

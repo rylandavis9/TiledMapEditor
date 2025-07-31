@@ -37,7 +37,7 @@ public class MapEditor extends JFrame {
 
     public MapEditor() {
         initializeMap();
-        initializeTiles();
+        //initializeTiles();
 
         editorPanel = new EditorPanel();
         JScrollPane scrollPane = new JScrollPane(editorPanel);
@@ -177,7 +177,7 @@ public class MapEditor extends JFrame {
         }
     }
 
-    private void initializeTiles() {
+    /*private void initializeTiles() {
         ArrayList<Tile> tileList = new ArrayList<>();
         symbolList.clear();
         spritesheetNames.clear();
@@ -219,7 +219,7 @@ public class MapEditor extends JFrame {
             JOptionPane.showMessageDialog(this, "Failed to load tilesheets.");
             System.exit(1);
         }
-    }
+    }*/
 
     private void populateTileButtons() {
         tileButtonsPanel.removeAll();
@@ -467,7 +467,9 @@ public class MapEditor extends JFrame {
 
         File[] selectedFiles = fileChooser.getSelectedFiles();
 
-        ArrayList<Tile> tileList = new ArrayList<>(Arrays.asList(tileSet));
+        ArrayList<Tile> tileList = (tileSet != null)
+                ? new ArrayList<>(Arrays.asList(tileSet))
+                : new ArrayList<>();
         int index = symbolList.size();
 
         for (File file : selectedFiles) {
