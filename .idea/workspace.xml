@@ -9,9 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e30c1c3-3677-4bd4-881a-36f9b6435a36" name="Changes" comment="initial commit">
+    <list default="true" id="4e30c1c3-3677-4bd4-881a-36f9b6435a36" name="Changes" comment="Built package and added the ability to add tilesheets at runtime">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TiledMapEditor/main/MapEditor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TiledMapEditor/main/MapEditor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/MapEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/MapEditor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,7 +51,8 @@
     &quot;last_opened_file_path&quot;: &quot;/home/rylan/IdeaProjects/TiledMapEditor&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
 }</component>
   <component name="RunManager">
@@ -96,11 +96,20 @@
       <option name="project" value="LOCAL" />
       <updated>1753932031622</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Built package and added the ability to add tilesheets at runtime">
+      <option name="closed" value="true" />
+      <created>1753932934525</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1753932934525</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
+    <MESSAGE value="Built package and added the ability to add tilesheets at runtime" />
+    <option name="LAST_COMMIT_MESSAGE" value="Built package and added the ability to add tilesheets at runtime" />
   </component>
 </project>

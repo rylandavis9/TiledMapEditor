@@ -12,12 +12,15 @@ import javax.imageio.ImageIO;
 public class MapEditor extends JFrame {
     int tileSize = 16; // size of tiles in tilesheet and map
     int rows = 20, cols = 20;
-    int layerCount = 3;  // number of layers
+    int layerCount = 4;// number of layers
+
+    int alpha = 48;
+    Color myColor = new Color(255, 0, 255, alpha);
 
     // 3D map array: [layer][row][col]
     String[][][] mapLayers = new String[layerCount][rows][cols];
 
-    String currentTile = "t0"; // default tile symbol selected
+    String currentTile = "e0"; // default tile symbol selected
     int currentLayer = 0;      // currently active editing layer
 
     Tile[] tileSet;
@@ -70,7 +73,7 @@ public class MapEditor extends JFrame {
                         if (r < mapLayers[l].length && c < mapLayers[l][0].length) {
                             newMapLayers[l][r][c] = mapLayers[l][r][c];
                         } else {
-                            newMapLayers[l][r][c] = "t0"; // default tile
+                            newMapLayers[l][r][c] = "e0"; // default tile
                         }
                     }
                 }
@@ -110,7 +113,9 @@ public class MapEditor extends JFrame {
                 layerSelector.addItem("Ground");
             } else if (i == 1) {
                 layerSelector.addItem("Midground");
-            } else {
+            } else if (i == 2) {
+                layerSelector.addItem("COLLISION");
+            }else {
                 layerSelector.addItem("Top ");
             }
 
@@ -133,7 +138,7 @@ public class MapEditor extends JFrame {
         clearTopLayersBtn.addActionListener(e -> {
             for (int l = 1; l < layerCount; l++) {
                 for (int r = 0; r < rows; r++) {
-                    Arrays.fill(mapLayers[l][r], "t0");
+                    Arrays.fill(mapLayers[l][r], "e0");
                 }
             }
             editorPanel.repaint();
@@ -145,8 +150,11 @@ public class MapEditor extends JFrame {
         controls.add(exportBtn);
 
         JButton eraserButton = new JButton("Eraser");
-        eraserButton.addActionListener(e -> currentTile = "t0");
+        eraserButton.addActionListener(e -> currentTile = "e0");
         controls.add(eraserButton);
+        JButton collisionButton = new JButton("Colider");
+        collisionButton.addActionListener(e -> currentTile = "c0");
+        controls.add(collisionButton);
 
         JButton importTilesheetBtn = new JButton("Import Tilesheet");
         importTilesheetBtn.addActionListener(e -> importTilesheets());
@@ -155,7 +163,7 @@ public class MapEditor extends JFrame {
         add(controls, BorderLayout.SOUTH);
 
         setTitle("Tile Map Editor");
-        setSize(1370, 800);
+        setSize(1450, 900);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -172,7 +180,7 @@ public class MapEditor extends JFrame {
     private void initializeMap() {
         for (int l = 0; l < layerCount; l++) {
             for (int i = 0; i < rows; i++) {
-                Arrays.fill(mapLayers[l][i], "t0");
+                Arrays.fill(mapLayers[l][i], "e0");
             }
         }
     }
@@ -315,7 +323,12 @@ public class MapEditor extends JFrame {
                     // Draw all layers bottom to top
                     for (int l = 0; l < layerCount; l++) {
                         String symbol = mapLayers[l][i][j];
-                        if (symbol == null || symbol.equals("t0")) continue; // skip empty tiles
+                        if (symbol == null || symbol.equals("e0")) continue; // skip empty tiles
+
+                        if (symbol.equals("c0")) {
+                            g2.setColor(myColor);
+                            g2.fillRect(j * scaledTileSize, i * scaledTileSize, scaledTileSize, scaledTileSize);
+                        }
 
                         int tileIndex = symbolList.indexOf(symbol);
                         if (tileIndex < 0) continue;
@@ -384,6 +397,7 @@ public class MapEditor extends JFrame {
                         JOptionPane.showMessageDialog(this, "Missing layer file: " + file.getName());
                         return;
                     }
+
                     try (BufferedReader br = new BufferedReader(new FileReader(file))) {
                         for (int i = 0; i < rows; i++) {
                             String line = br.readLine();
@@ -415,12 +429,22 @@ public class MapEditor extends JFrame {
         // Save each layer as separate text file
         try {
             for (int l = 0; l < layerCount; l++) {
-                File mapFile = new File(exportDir, "map_layer_" + l + ".txt");
-                try (PrintWriter pw = new PrintWriter(mapFile)) {
-                    for (int i = 0; i < rows; i++) {
-                        pw.println(String.join(" ", mapLayers[l][i]));
+                if (l == 2) {
+                    File mapFile = new File(exportDir, "COLLISION.txt");
+                    try (PrintWriter pw = new PrintWriter(mapFile)) {
+                        for (int i = 0; i < rows; i++) {
+                            pw.println(String.join(" ", mapLayers[l][i]));
+                        }
+                    }
+                } else {
+                    File mapFile = new File(exportDir, "map_layer_" + l + ".txt");
+                    try (PrintWriter pw = new PrintWriter(mapFile)) {
+                        for (int i = 0; i < rows; i++) {
+                            pw.println(String.join(" ", mapLayers[l][i]));
+                        }
                     }
                 }
+
             }
         } catch (IOException e) {
             e.printStackTrace();
