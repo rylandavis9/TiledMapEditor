@@ -15,7 +15,8 @@ public class MapEditor extends JFrame {
     int layerCount = 4;// number of layers
 
     int alpha = 48;
-    Color myColor = new Color(255, 0, 255, alpha);
+    Color magenta = new Color(255, 0, 255, alpha);
+    Color red = new Color(255, 0, 0, alpha);
 
     // 3D map array: [layer][row][col]
     String[][][] mapLayers = new String[layerCount][rows][cols];
@@ -57,8 +58,8 @@ public class MapEditor extends JFrame {
         // Controls Panel
         JPanel controls = new JPanel();
 
-        JSpinner rowSpinner = new JSpinner(new SpinnerNumberModel(rows, 1, 100, 1));
-        JSpinner colSpinner = new JSpinner(new SpinnerNumberModel(cols, 1, 100, 1));
+        JSpinner rowSpinner = new JSpinner(new SpinnerNumberModel(rows, 1, 500, 1));
+        JSpinner colSpinner = new JSpinner(new SpinnerNumberModel(cols, 1, 500, 1));
         JButton resizeBtn = new JButton("Resize Map");
 
         resizeBtn.addActionListener(e -> {
@@ -152,9 +153,12 @@ public class MapEditor extends JFrame {
         JButton eraserButton = new JButton("Eraser");
         eraserButton.addActionListener(e -> currentTile = "e0");
         controls.add(eraserButton);
-        JButton collisionButton = new JButton("Colider");
+        JButton collisionButton = new JButton("Collider");
         collisionButton.addActionListener(e -> currentTile = "c0");
         controls.add(collisionButton);
+        JButton killButton = new JButton("Killer");
+        killButton.addActionListener(e -> currentTile = "k0");
+        controls.add(killButton);
 
         JButton importTilesheetBtn = new JButton("Import Tilesheet");
         importTilesheetBtn.addActionListener(e -> importTilesheets());
@@ -326,7 +330,11 @@ public class MapEditor extends JFrame {
                         if (symbol == null || symbol.equals("e0")) continue; // skip empty tiles
 
                         if (symbol.equals("c0")) {
-                            g2.setColor(myColor);
+                            g2.setColor(magenta);
+                            g2.fillRect(j * scaledTileSize, i * scaledTileSize, scaledTileSize, scaledTileSize);
+                        }
+                        if (symbol.equals("k0")) {
+                            g2.setColor(red);
                             g2.fillRect(j * scaledTileSize, i * scaledTileSize, scaledTileSize, scaledTileSize);
                         }
 
@@ -417,59 +425,60 @@ public class MapEditor extends JFrame {
 
     // Export map layers and tiles to folder
     public void exportMapAndTiles() {
-        JFileChooser folderChooser = new JFileChooser();
-        folderChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        int result = folderChooser.showSaveDialog(this);
-        if (result != JFileChooser.APPROVE_OPTION) {
-            return; // user cancelled
-        }
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int result = fileChooser.showSaveDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
 
-        File exportDir = folderChooser.getSelectedFile();
 
-        // Save each layer as separate text file
-        try {
-            for (int l = 0; l < layerCount; l++) {
-                if (l == 2) {
-                    File mapFile = new File(exportDir, "COLLISION.txt");
-                    try (PrintWriter pw = new PrintWriter(mapFile)) {
-                        for (int i = 0; i < rows; i++) {
-                            pw.println(String.join(" ", mapLayers[l][i]));
-                        }
-                    }
-                } else {
-                    File mapFile = new File(exportDir, "map_layer_" + l + ".txt");
-                    try (PrintWriter pw = new PrintWriter(mapFile)) {
-                        for (int i = 0; i < rows; i++) {
-                            pw.println(String.join(" ", mapLayers[l][i]));
-                        }
-                    }
-                }
+            File exportDir = fileChooser.getSelectedFile();
 
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Failed to save map files: " + e.getMessage());
-            return;
-        }
-
-        // Save tile images
-        for (int i = 0; i < tileSet.length; i++) {
-            String tileCode = symbolList.get(i);
-            BufferedImage img = tileSet[i].image;
-
-            if (isEmptyTile(img)) continue;
-
-            File tileFile = new File(exportDir, tileCode + ".png");
+            // Save each layer as separate text file
             try {
-                ImageIO.write(img, "png", tileFile);
+                for (int l = 0; l < layerCount; l++) {
+                    if (l == 2) {
+                        File mapFile = new File(exportDir, "COLLISION.txt");
+                        try (PrintWriter pw = new PrintWriter(mapFile)) {
+                            for (int i = 0; i < rows; i++) {
+                                pw.println(String.join(" ", mapLayers[l][i]));
+                            }
+                        }
+                    } else {
+                        File mapFile = new File(exportDir, "map_layer_" + l + ".txt");
+                        try (PrintWriter pw = new PrintWriter(mapFile)) {
+                            for (int i = 0; i < rows; i++) {
+                                pw.println(String.join(" ", mapLayers[l][i]));
+                            }
+                        }
+                    }
+
+                }
             } catch (IOException e) {
                 e.printStackTrace();
-                JOptionPane.showMessageDialog(this, "Failed to save tile " + tileCode + ": " + e.getMessage());
+                JOptionPane.showMessageDialog(this, "Failed to save map files: " + e.getMessage());
                 return;
             }
-        }
 
-        JOptionPane.showMessageDialog(this, "Export complete!\nMap layers and tiles saved to:\n" + exportDir.getAbsolutePath());
+            // Save tile images
+            for (int i = 0; i < tileSet.length; i++) {
+                String tileCode = symbolList.get(i);
+                BufferedImage img = tileSet[i].image;
+
+                if (isEmptyTile(img)) continue;
+
+                File tileFile = new File(exportDir, tileCode + ".png");
+                try {
+                    ImageIO.write(img, "png", tileFile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(this, "Failed to save tile " + tileCode + ": " + e.getMessage());
+                    return;
+                }
+            }
+
+            JOptionPane.showMessageDialog(this, "Export complete!\nMap layers and tiles saved to:\n" + exportDir.getAbsolutePath());
+
+        }
     }
 
     private BufferedImage createTransparentTile() {

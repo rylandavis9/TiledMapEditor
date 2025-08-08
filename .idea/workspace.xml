@@ -10,7 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e30c1c3-3677-4bd4-881a-36f9b6435a36" name="Changes" comment="Built package and added the ability to add tilesheets at runtime">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TiledMapEditor/main/MapEditor$EditorPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TiledMapEditor/main/MapEditor$EditorPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TiledMapEditor/main/MapEditor$EditorPanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TiledMapEditor/main/MapEditor$EditorPanel$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TiledMapEditor/main/MapEditor$EditorPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TiledMapEditor/main/MapEditor$EditorPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TiledMapEditor/main/MapEditor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TiledMapEditor/main/MapEditor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TiledMapEditor/main/Tile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TiledMapEditor/main/Tile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TiledMapEditor/main/WrapLayout.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TiledMapEditor/main/WrapLayout.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/MapEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/MapEditor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,7 +37,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/rylandavis9/TiledMapEditor.git&quot;,
-    &quot;accountId&quot;: &quot;71f3b09d-21f5-4460-9583-b6df6a0ac2ab&quot;
+    &quot;accountId&quot;: &quot;d2156d32-4354-4e6d-9d35-537d69a7061a&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
